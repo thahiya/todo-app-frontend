@@ -1,15 +1,31 @@
 import React from 'react';
+
 class Task extends React.Component {
-    render () {
-        return <div id="taskItem" class="container">
-        <div class="row">
-            <div id="firstTask" class="col-sm"> A first task </div>
-            <div class="col-sm">
-                <input id="doneButton" type="button" value="done"/>
-                <input id="deleteButton" type="button" value="delete"/>
+
+    render() {
+        return (
+            <div className="row" style={styles.taskRow}>
+                <div className="col">
+                    {this.props.taskDescription}
+                </div>
+                <div className="col">
+                    <input type="button" value="Done" />
+                </div>
+                <div className="col">
+                    <input type="button" value="Delete" />
+                </div>
             </div>
-        </div>
-        </div>
+
+            
+        );
+    }
+
+}
+
+const styles = {
+    taskRow: {
+        paddingTop: "10px",
+        paddingBottom: "10px"
     }
 }
 

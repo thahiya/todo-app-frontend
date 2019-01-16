@@ -17,24 +17,46 @@ class App extends Component {
   }
 
   addTask(task) {
+    const id = (Math.random () * 100);
+
+    task = {...task, id};
+
     let currentListOfTasks = this.state.tasks;
     currentListOfTasks.push(task); 
+
     this.setState ({
       tasks:currentListOfTasks
     });
   }
 
+  removeTask(task) {
+    let currentListOfTasks = this.state.tasks;
+    currentListOfTasks.splice(task, 1);
+    this.setState({
+      tasks: currentListOfTasks
+    });
+  }
+
+  handleTaskLength = arr => {
+    const arrLength = arr.length;
+    return arrLength;
+  }
+
   render() {
     return (
       <div className="Container"> 
-      <Header/>
-      <TaskList tasks = {this.state.tasks}/>
-      <TaskEntry onSaveTaskHandler = {this.addTask}/>
+        <Header/>
+        <TaskEntry
+          onSaveTaskHandler = {this.addTask}
+          onDeleteTaskHandler = {this.removeTask}
+        />
+        <p>Things to do:  {this.handleTaskLength(this.state.tasks)} </p>
+        <TaskList
+          tasks = {this.state.tasks}
+        />
       </div>
-      
     );
   }
 }
 
 export default App;
-
